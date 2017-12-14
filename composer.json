@@ -1,0 +1,15 @@
+{
+  "name": "geeShoe/dbClass",
+  "description": "PHP class to connect to mysql using PDO",
+  "authors": [
+    {
+      "name": "Jesse Rushlow",
+      "email": "jr@geeshoe.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "geeShoe\\dBase\\": "src"
+    }
+  }
+}

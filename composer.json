@@ -1,5 +1,5 @@
 {
-  "name": "geeShoe/dbClass",
+  "name": "geeshoe/dbclass",
   "description": "PHP class to connect to mysql using PDO",
   "authors": [
     {

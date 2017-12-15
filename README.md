@@ -57,9 +57,28 @@ if(file_exists("vendor/autoload.php")){
 That's it! You're all set to start using dbClass-php. If you prefer not to use composers autoload feature, just 
 remove the "autoload" section from your composer.json file.
 
+### Configure
+
+For dbClass to work properly, move the config.ini file to a folder outside of the web root. Then edit the following
+section within config.ini to reflect the values needed to connect to the mysql server.
+
+```
+[mysql]
+hostName = 127.0.0.1   //Points to the mysql server. Usually 127.0.0.1 or localhost 
+port = 3306   //Typically the mysql port is 3306
+dataBase = dbClassTest   //The name of the database which you will be using.
+userName = testUser   //Both the username and password for the mysql account used to manipulate the mysql database
+passWord = me6wp3Ha92n
+```
+
+### Documentation
+
+The API is documented in docs/api/index.html
+
+
 @TODO - Provide examples on how to use the dam thing.
 
-## Authors
+### Authors
 
 * **Jesse Rushlow** - *Lead developer* - [geeShoe Development](http://geeshoe.com)
 

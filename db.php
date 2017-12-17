@@ -53,14 +53,24 @@ class db
     public $insert = array();
     public $values = array();
 
-    //Creates two arrays from one userSuppliedData array. The two new arrays
-    //are formatted to be used in conjunction with the insert & fetch functions.
-    public function createSqlArray($userSuppliedData){
+    /*
+     * Creates two arrays to be used in conjunction with the insert and fetch functions.
+     * Accepts two arguments. $typeOfStatement is used to determine if the function is returning
+     * a 'insert' array or an 'update' array.
+     * The second argument is an the userSuppliedData array which is used to populate the insert and values array.
+     */
+    public function createSqlArray($typeOfStatement, $userSuppliedData){
         foreach(array_keys($userSuppliedData) as $key){
-            $this->insert[] = $key;
+            if($typeOfStatement == 'insert'){
+                $this->insert[] = $key;
+            } elseif ($typeOfStatement == 'update'){
+                $this->insert[] = '`' . $key . '`' . ' = :' . $key;
+            }
+            //@TODO - Throw exception if wrong $typeOfStatement is entered.
             $this->values[':'.$key] = $userSuppliedData[$key];
         }
     }
+
     //Creates a mySql INSERT query for use with the insert function.
     //As this function is dependant on the insert & value arrays,
     //createSqlArray must be executed prior to calling createSqlInsertStatement.
@@ -68,6 +78,14 @@ class db
     public function createSqlInsertStatement($insertTable){
         return 'INSERT INTO `'.$insertTable.'`('.implode(', ',$this->insert).') VALUE ('.implode(', ', array_keys
             ($this->values)).')';
+    }
+    //Creates a mySql UPDATE query for use with the insert function.
+    //As this function is dependant on the insert & value arrays,
+    //createSqlArray must be executed prior to calling createSqlUpdateStatement.
+    //Or the insert & value arrays must be populated by some other manner.
+    public function makeSqlUpdateStatements($updateWhichTable, $updateByWhatColumn, $updateWhatId){
+        return 'UPDATE `'.$updateWhichTable.'` SET ' . implode(", ", $this->insert) . ' WHERE `'
+            .$updateByWhatColumn.'` = ' . $updateWhatId;
     }
     //@TODO - Create update / remove mySql statements.
 }

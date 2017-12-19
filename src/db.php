@@ -1,5 +1,5 @@
 <?php
-namespace dBase;
+namespace geeshoe\dbClass;
 
 class db
 {

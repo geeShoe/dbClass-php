@@ -3,7 +3,7 @@ namespace geeshoe\dbClass;
 
 /**
  * Class Db
- * @package dBase
+ * @package geeshoe\dbClass
  */
 class Db
 {
@@ -53,15 +53,26 @@ class Db
      * -Experimental method-
      *
      * @param string $sql MySQL query to be executed
+     * @return void
      */
     public function exec($sql)
     {
         $this->connect()->query($sql);
     }
 
+    /**
+     * Execute mySql query and return single record set
+     *
+     * -Experimental method-
+     *
+     * @param string $sql MySql query to be executed
+     * @param string $fetchStyle PDO fetch style to be used. I.e. PDO::FETCH_ASSOC
+     * @return mixed
+     */
     public function singleReturnQuery($sql, $fetchStyle)
     {
         $stmt = $this->connect()->query($sql)->fetch($fetchStyle);
+        return $stmt;
     }
 
     /**

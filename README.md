@@ -71,9 +71,14 @@ userName = testUser   //Both the username and password for the mysql account use
 passWord = me6wp3Ha92n
 ```
 
+### Documentation
+
+The API is documented in docs/api/index.html
+
+
 @TODO - Provide examples on how to use the dam thing.
 
-## Authors
+### Authors
 
 * **Jesse Rushlow** - *Lead developer* - [geeShoe Development](http://geeshoe.com)
 

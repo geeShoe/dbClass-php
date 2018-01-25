@@ -1,9 +1,9 @@
 <?php
-namespace geeshoe\dbClass;
+namespace Geeshoe\DbClass;
 
 /**
  * Class Db
- * @package geeshoe\dbClass
+ * @package Geeshoe\DbClass
  */
 class Db
 {
@@ -15,9 +15,9 @@ class Db
     /**
      * Set iniPath before using this class
      *
-     * @var string $iniPath System path to the config.ini.
+     * @var null|string $iniPath System path to the config.ini.
      */
-    private $iniPath = "/path/to/config.ini";
+    private $iniPath = null;
 
     /**
      * @var array
@@ -28,6 +28,16 @@ class Db
      * @var array
      */
     public $values = array();
+
+    public function __construct()
+    {
+        $this->iniPath = dirname(__DIR__, 4) . '/DbConfig.ini';
+        $settings = parse_ini_file($this->iniPath);
+
+        if (!empty($settings['AltPath'])) {
+            $this->iniPath = $settings['AltPath'];
+        }
+    }
 
     /**
      * Set up PDO instance

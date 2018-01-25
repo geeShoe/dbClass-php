@@ -32,10 +32,10 @@ class Db
     public function __construct()
     {
         $this->iniPath = dirname(__DIR__, 4) . '/DbConfig.ini';
-        $settings = parse_ini_file($this->iniPath);
+        $settings = parse_ini_file($this->iniPath, true);
 
-        if (!empty($settings['AltPath'])) {
-            $this->iniPath = $settings['AltPath'];
+        if (!empty($settings['config']['AltPath'])) {
+            $this->iniPath = $settings['config']['AltPath'];
         }
     }
 
@@ -52,12 +52,12 @@ class Db
     private function connect()
     {
         if (!isset($this->connection)) {
-            $ini = parse_ini_file($this->iniPath);
+            $ini = parse_ini_file($this->iniPath, true);
             $this->connection = new \PDO(
-                'mysql:dbname='.$ini['dataBase'].
-                ';host='.$ini['hostName'].':'.$ini['port'],
-                $ini['userName'],
-                $ini['passWord']
+                'mysql:dbname='.$ini['mysql']['dataBase'].
+                ';host='.$ini['mysql']['hostName'].':'.$ini['mysql']['port'],
+                $ini['mysql']['userName'],
+                $ini['mysql']['passWord']
             );
             $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         }

@@ -1,5 +1,5 @@
 # dbClass-php
-Class for connecting to mysql databases that extends the PHP PDO extension. The goal is to automate many common mySql methods for projects that rely heavly on mysql.
+Class for connecting to mysql databases that extends the PHP PDO extension. The goal is to automate many common mySql methods for projects that rely heavily on mysql.
 
 Please note that this project is in initial development and as such, some documentation may be incomplete.
 
@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Current development of the project is being done with PHP 7.1, however earlier versions of PHP that support the mysql pdo extension will work. To check if the PDO mysql driver is enabled, run the following command in the CLI or add it to a page in your webroot
+Current development of the project is being done with PHP 7.2, however earlier versions of PHP that support the mysql pdo extension will work. To check if the PDO mysql driver is enabled, run the following command in the CLI or add it to a page in your webroot
 
 ```
 phpinfo();
@@ -21,48 +21,30 @@ and ensure PDO drivers lists mysql. If it doesn't or you cannot find any mention
 
 ### Installing
 
-To add dbClass-php to your project, I recommend using composer. To do so create a composer.json file in your web root and add the following:
+To add DbClass to your project, run:
+
 ```
-{
-  "require": {
-    "geeshoe/dbClass": "dev-master"
-  },
-  "autoload": {
-    "psr-4": {
-      "dBase\\": "vendor/geeshoe/dbclass/"
-    }
-  }
-}
+composer require geeshoe/dbclass
 ```
+
 If you prefer to use the development branch of dbClass-php, change the following line of code in the composer.json file.
 
 ```
-"geeshoe/dbClass": "dev-develop"
+composer require geeshoe/dbclass dev-develop
 ```
-
-Using the console, navigate to the directory where your composer.json file is located and run:
-
-```
-composer install
-```
-Next, you will need to add the autoload.php to your index.php or to which ever file you wish to create a mysql query.
- To do so, you can use the code snippet below.
-```
-if(file_exists("vendor/autoload.php")){
-    require "vendor/autoload.php";
-} else {
-    echo "Dam.. Something went wrong!";
-}
-```
-That's it! You're all set to start using dbClass-php. If you prefer not to use composers autoload feature, just 
-remove the "autoload" section from your composer.json file.
 
 ### Configure
 
-For dbClass to work properly, move the config.ini file to a folder outside of the web root. Then edit the following
-section within config.ini to reflect the values needed to connect to the mysql server.
+Copy the included sample_config.ini to the parent directory of your vendor folder and rename it to DbConfig.ini. Change
+the values in the mysql section to reflect your database configuration.
+
+Setting AltPath to /some/other/path/config.ini 
+will use the configuration directives in the specified config file rather than the ones in DbConfig.ini.
 
 ```
+[config]
+AltPath =
+
 [mysql]
 hostName = 127.0.0.1   //Points to the mysql server. Usually 127.0.0.1 or localhost 
 port = 3306   //Typically the mysql port is 3306

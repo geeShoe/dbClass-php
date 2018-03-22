@@ -1,6 +1,11 @@
 ## dbClass-php ChangeLog
 *dbClass-php follows Semantic Versioning 2.0.0*
 
+### v0.3.0
+*Release - 2018-03-22*
+
+* Added delete statement method
+
 ### v0.2.0
 *Release - 2018-01-25*
 

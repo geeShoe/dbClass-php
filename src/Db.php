@@ -206,5 +206,19 @@ class Db
         return 'UPDATE `'.$updateWhichTable.'` SET ' . implode(", ", $this->insert) . ' WHERE `'
             .$updateByWhatColumn.'` = ' . $updateWhatId;
     }
-    //@TODO - Create update / remove mySql statements.
+
+
+    /**
+     * Creates a mysql DELETE query for use with the fetch method.
+     *
+     * @param $deleteFromWhichTable
+     * @param $deleteByWhatColumn
+     * @param $deleteWhatId
+     * @return string
+     */
+    public function makeSqlDeleteStatements($deleteFromWhichTable, $deleteByWhatColumn, $deleteWhatId)
+    {
+        return 'DELETE FROM `' . $deleteFromWhichTable . '` WHERE `'
+            . $deleteByWhatColumn . '` = ' . $deleteWhatId . ';';
+    }
 }

@@ -1,4 +1,7 @@
 # dbClass-php
+
+## dbClass-php has been depreciated. It has been replaced by [geeShoe/DbLib](https://github.com/geeShoe/DbLib)
+
 Class for connecting to mysql databases that extends the PHP PDO extension. The goal is to automate many common mySql methods for projects that rely heavily on mysql.
 
 Please note that this project is in initial development and as such, some documentation may be incomplete.
